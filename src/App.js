@@ -9,13 +9,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {this.props.questions[0].question}
+        <select onChange={(event) => this.props.submitAnswer(event.target.value)}>
+          <option value={ true }>True</option>
+          <option value={ false }>False</option>
+        </select>
+        {this.props.score}        
       </div>
     );
   }
@@ -23,6 +22,7 @@ class App extends Component {
 
 const mapStateToProps =  state => ({
   score: state.reducer.score,
+  questions: state.reducer.questions,
 });
 
 const mapDispatchToProps = dispatch => ({
